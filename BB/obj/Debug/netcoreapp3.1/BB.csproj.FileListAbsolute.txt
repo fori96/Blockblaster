@@ -1,0 +1,15 @@
+C:\Users\Balint\source\repos\BB\BB\bin\Debug\netcoreapp3.1\BB.exe
+C:\Users\Balint\source\repos\BB\BB\bin\Debug\netcoreapp3.1\BB.deps.json
+C:\Users\Balint\source\repos\BB\BB\bin\Debug\netcoreapp3.1\BB.runtimeconfig.json
+C:\Users\Balint\source\repos\BB\BB\bin\Debug\netcoreapp3.1\BB.runtimeconfig.dev.json
+C:\Users\Balint\source\repos\BB\BB\bin\Debug\netcoreapp3.1\BB.dll
+C:\Users\Balint\source\repos\BB\BB\bin\Debug\netcoreapp3.1\BB.pdb
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.csprojAssemblyReference.cache
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.Form1.resources
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.csproj.GenerateResource.cache
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.AssemblyInfoInputs.cache
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.AssemblyInfo.cs
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.csproj.CoreCompileInputs.cache
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.dll
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.pdb
+C:\Users\Balint\source\repos\BB\BB\obj\Debug\netcoreapp3.1\BB.genruntimeconfig.cache
