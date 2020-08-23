@@ -37,8 +37,15 @@ namespace BB
             }
             if (p1.paddle.Bounds.IntersectsWith(aball.Bounds))
             {
-                ver = ver * -1;
-                hor *= 1;
+                //if (p1.paddle.Bounds.Top == aball.Bounds.Bottom)
+                //    hor *= -1;
+                //if (p1.paddle.Bounds.Left == aball.Bounds.Right || p1.paddle.Bounds.Right == aball.Bounds.Left)
+                //    ver = ver * -1;
+
+                if ((aball.Right > p1.paddle.Bounds.Right) || (aball.Left < p1.paddle.Bounds.Left))
+                    hor *= -1;
+                if ((aball.Top < p1.paddle.Bounds.Top) || (aball.Bottom > p1.paddle.Bounds.Bottom))
+                    ver *= -1;
             }
         }
         public void Score()
@@ -46,8 +53,8 @@ namespace BB
             p1.point++;
             if (p1.point % 5 == 0)
             {
-                ver += 2;
-                hor += 2;
+                ver += 1;
+                hor += 1;
             }
         }
         private void resetlabda()

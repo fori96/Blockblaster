@@ -32,12 +32,13 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.player = new System.Windows.Forms.PictureBox();
             this.ball = new System.Windows.Forms.PictureBox();
-            this.life = new System.Windows.Forms.Label();
-            this.score = new System.Windows.Forms.Label();
+            this.life_label = new System.Windows.Forms.Label();
+            this.score_label = new System.Windows.Forms.Label();
             this.ask = new System.Windows.Forms.Label();
             this.yes = new System.Windows.Forms.Label();
             this.no = new System.Windows.Forms.Label();
-            this.win = new System.Windows.Forms.Label();
+            this.result = new System.Windows.Forms.Label();
+            this.level_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             this.SuspendLayout();
@@ -66,24 +67,24 @@
             this.ball.TabIndex = 3;
             this.ball.TabStop = false;
             // 
-            // life
+            // life_label
             // 
-            this.life.AutoSize = true;
-            this.life.Location = new System.Drawing.Point(15, 451);
-            this.life.Name = "life";
-            this.life.Size = new System.Drawing.Size(38, 15);
-            this.life.TabIndex = 4;
-            this.life.Text = "Élet: 3";
+            this.life_label.AutoSize = true;
+            this.life_label.Location = new System.Drawing.Point(15, 451);
+            this.life_label.Name = "life_label";
+            this.life_label.Size = new System.Drawing.Size(38, 15);
+            this.life_label.TabIndex = 4;
+            this.life_label.Text = "Élet: 3";
             // 
-            // score
+            // score_label
             // 
-            this.score.AutoSize = true;
-            this.score.Location = new System.Drawing.Point(741, 451);
-            this.score.Name = "score";
-            this.score.Size = new System.Drawing.Size(38, 15);
-            this.score.TabIndex = 5;
-            this.score.Text = "Pont: ";
-            this.score.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.score_label.AutoSize = true;
+            this.score_label.Location = new System.Drawing.Point(741, 451);
+            this.score_label.Name = "score_label";
+            this.score_label.Size = new System.Drawing.Size(38, 15);
+            this.score_label.TabIndex = 5;
+            this.score_label.Text = "Pont: ";
+            this.score_label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ask
             // 
@@ -129,35 +130,47 @@
             this.no.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.no.Click += new System.EventHandler(this.no_Click);
             // 
-            // win
+            // result
             // 
-            this.win.AutoSize = true;
-            this.win.BackColor = System.Drawing.Color.Gainsboro;
-            this.win.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.win.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.win.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.win.Location = new System.Drawing.Point(315, 100);
-            this.win.Name = "win";
-            this.win.Size = new System.Drawing.Size(169, 47);
-            this.win.TabIndex = 6;
-            this.win.Text = "Győzelem";
-            this.win.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.result.AutoSize = true;
+            this.result.BackColor = System.Drawing.Color.Gainsboro;
+            this.result.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.result.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.result.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.result.Location = new System.Drawing.Point(315, 100);
+            this.result.Name = "result";
+            this.result.Size = new System.Drawing.Size(169, 47);
+            this.result.TabIndex = 6;
+            this.result.Text = "Győzelem";
+            this.result.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // level_label
+            // 
+            this.level_label.AutoSize = true;
+            this.level_label.Location = new System.Drawing.Point(384, 451);
+            this.level_label.Name = "level_label";
+            this.level_label.Size = new System.Drawing.Size(44, 15);
+            this.level_label.TabIndex = 5;
+            this.level_label.Text = "Szint: 1";
+            this.level_label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 477);
-            this.Controls.Add(this.win);
+            this.Controls.Add(this.level_label);
+            this.Controls.Add(this.result);
             this.Controls.Add(this.no);
             this.Controls.Add(this.yes);
             this.Controls.Add(this.ask);
-            this.Controls.Add(this.score);
-            this.Controls.Add(this.life);
+            this.Controls.Add(this.score_label);
+            this.Controls.Add(this.life_label);
             this.Controls.Add(this.ball);
             this.Controls.Add(this.player);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Blockblaster";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
@@ -172,12 +185,13 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.PictureBox ball;
-        private System.Windows.Forms.Label life;
-        private System.Windows.Forms.Label score;
+        private System.Windows.Forms.Label life_label;
+        private System.Windows.Forms.Label score_label;
         private System.Windows.Forms.Label ask;
         private System.Windows.Forms.Label yes;
         private System.Windows.Forms.Label no;
-        private System.Windows.Forms.Label win;
+        private System.Windows.Forms.Label result;
+        private System.Windows.Forms.Label level_label;
     }
 }
 

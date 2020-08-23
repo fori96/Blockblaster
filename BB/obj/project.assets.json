@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Balint\\source\\repos\\BB\\BB\\BB.csproj",
+      "projectUniqueName": "C:\\Users\\Balint\\Desktop\\BB\\BB\\BB.csproj",
       "projectName": "BB",
-      "projectPath": "C:\\Users\\Balint\\source\\repos\\BB\\BB\\BB.csproj",
+      "projectPath": "C:\\Users\\Balint\\Desktop\\BB\\BB\\BB.csproj",
       "packagesPath": "C:\\Users\\Balint\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Balint\\source\\repos\\BB\\BB\\obj\\",
+      "outputPath": "C:\\Users\\Balint\\Desktop\\BB\\BB\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
