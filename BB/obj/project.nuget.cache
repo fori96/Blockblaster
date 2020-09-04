@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "af5La6O5k/5hA2ld3A1L2c8LxLNj9MVVBzD4skx3CzVbOi16lEKtVOLws7GbY+zB3JdPqXxke3Ak4WH07qoKHg==",
+  "dgSpecHash": "aKfI504XxeaBFY7Bs8YYkVRjzLHq61kLhwnfz4BTL+Zx7APklcnPe1SVcW6xFxl9GElqEbr4q66ouQZsOJ+5CQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Balint\\Desktop\\BB\\BB\\BB.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Balint\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

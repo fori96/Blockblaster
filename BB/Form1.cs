@@ -13,16 +13,25 @@ namespace BB
 {
     public partial class Form1 : Form
     {
-        bool reset = true;
+        bool reset = false;
         Player _player;
         Ball _ball;
-        int blocksnumber = 30;
+        int blocksnumber = 40;
         int level = 1;
         List<Panel> blocks = new List<Panel>();
+        FileHandler FileHandler = new FileHandler();
 
         public Form1()
         {
             InitializeComponent();
+            this.dataGridView = new System.Windows.Forms.DataGridView {
+                Location = new Point(75, 180),
+                Size = new Size(400,200),
+                BackgroundColor = Color.White,
+                RowHeadersVisible = false,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            };
+            this.scoreboard_panel.Controls.Add(this.dataGridView);
             InitGame();
         }
 
@@ -30,7 +39,7 @@ namespace BB
         {
             _player = new Player(player, score_label, life_label);
             _ball = new Ball(ball, _player);
-            InitBlocks(level);
+            level_label.Text = "Szint : " + level.ToString();
         }
 
         public void InitBlocks(int lvl)
@@ -42,7 +51,6 @@ namespace BB
                     Height = 20,
                     Width = 80,
                     Location = new Point((i % 10) * 80, (int)Math.Floor((decimal)i / 10) * 40 + 25),
-                    //(lvl == 1) ? System.Drawing.Color.Red : System.Drawing.Color.Yellow,
                     BorderStyle = BorderStyle.FixedSingle,
                     Visible = true,
                 };
@@ -73,10 +81,11 @@ namespace BB
                         add.BackColor = Color.Black;
                         break;
                     case 9:
-                        add.BackColor = Color.Wheat;
+                        add.BackColor = Color.White;
                         break;
                     case 10:
                         add.BackColor = Color.Transparent;
+                        add.BorderStyle = BorderStyle.None;
                         break;
                 }
                 blocks.Add(add);
@@ -91,24 +100,43 @@ namespace BB
         {
             if (reset)
             {
-                ask.Visible = false;
-                yes.Visible = false;
-                no.Visible = false;
-                result.Visible = false;
+                menu_panel.Visible = false;
                 _player.Move();
                 _ball.Move();
                
                 foreach(Panel b in blocks)
                     if (b.Bounds.IntersectsWith(ball.Bounds))
                     {
-                        if (b.BackColor == Color.Yellow)
-                            b.BackColor = Color.Red;
-                        else
+                        if (b.BackColor == Color.Red)
                         {
                             b.Visible = false;
                             blocks.Remove(b);
                             this.Controls.Remove(b);
-                        }                            
+                        }
+                        else
+                        {
+                            if (b.BackColor == Color.Orange)
+                                b.BackColor = Color.Red;
+                            else if (b.BackColor == Color.Yellow)
+                                b.BackColor = Color.Orange;
+                            else if (b.BackColor == Color.Green)
+                                b.BackColor = Color.Yellow;
+                            else if (b.BackColor == Color.Purple)
+                                b.BackColor = Color.Green;
+                            else if (b.BackColor == Color.Blue)
+                                b.BackColor = Color.Blue;
+                            else if (b.BackColor == Color.Gray)
+                                b.BackColor = Color.Purple;
+                            else if (b.BackColor == Color.Black)
+                                b.BackColor = Color.Gray;
+                            else if (b.BackColor == Color.White)
+                                b.BackColor = Color.Black;                        
+                            else if (b.BackColor == Color.Transparent)
+                            {
+                                b.BackColor = Color.White;
+                                b.BorderStyle = BorderStyle.FixedSingle;
+                            }
+                        }
 
                         if ((ball.Right > b.Right) || (ball.Left < b.Left))
                             _ball.hor *= -1;
@@ -124,13 +152,13 @@ namespace BB
                 EndTitle(true);
             }
 
-            if(_player.point % (30 * level) == 0)
+            if(_player.point != 0 && _player.point % (40 * level) == 0)
             {
                 level += 1;
                 InitBlocks(level);
                 level_label.Text = "Szint : " + level.ToString();
             }
-            if (_player.point == 1650)
+            if (_player.point == 2200)
                 EndTitle(false);
         }
 
@@ -155,42 +183,65 @@ namespace BB
             }
         }
 
-        private void yes_Click(object sender, EventArgs e)
-        {
-            reset = true;
+        void EndTitle(bool lose)
+        {            
+            end_panel.Visible = true;
+            end_panel.BringToFront();
+            if (lose)
+            {
+                result.Text = "Vesztettél";
+            }
+            Task.Delay(2000);
+            reset = false;
         }
 
-        private void no_Click(object sender, EventArgs e)
+        private void close_Click(object sender, EventArgs e)
         {
-            reset = false;
             this.Close();
         }
 
-        void EndTitle(bool lose)
+        private void newgame_Click(object sender, EventArgs e)
         {
-            if (!lose)
-            {
-                result.Visible = true;
-                Task.Delay(2000);
-            }
-            else
-            {
-                result.Visible = true;
-                result.Text = "Vesztettél";
-                Task.Delay(2000);
-            }
-            reset = false;
-            ask.Visible = true;
-            yes.Visible = true;
-            no.Visible = true;
-            InitBlocks(2);
+            InitGame();
             _player.life = 3;
             _player.point = 0;
+            InitBlocks(level);
+            reset = true;
+            end_panel.Visible = false;
+            scoreboard_panel.Visible = false;
+            readme_panel.Visible = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-}
+
+        private void scoreboard_label_Click(object sender, EventArgs e)
+        {
+            readme_panel.Visible = false;
+            scoreboard_panel.Visible = true;
+            scoreboard_panel.BringToFront();
+
+            List<GameData> list = FileHandler.JsonReading();
+            list.Sort((a,b) => b.Score.CompareTo(a.Score));
+
+            dataGridView.DataSource = list;
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            FileHandler.JsonWritting(playername.Text,_player.point,DateTime.Now);            
+            end_panel.Visible = false;
+            end_panel.SendToBack();
+            menu_panel.Visible = true;
+        }
+
+        private void credit_label_Click(object sender, EventArgs e)
+        {
+            scoreboard_panel.Visible = false;
+            readme_panel.Visible = true;
+            desc_label.Text = FileHandler.ReadDescription();
+        }
+    }
 }
